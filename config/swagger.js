@@ -1,9 +1,7 @@
 const swaggerJSDoc = require("swagger-jsdoc");
 const path = require("path");
 const BASE_URL =
-    window.location.hostname === "localhost"
-      ? "http://localhost:5000"
-      : "https://real-time-seven.vercel.app/";
+  "http://localhost:5000" ?? "https://real-time-seven.vercel.app/";
 
 const options = {
   definition: {
@@ -15,7 +13,7 @@ const options = {
     },
     servers: [
       {
-        url:`${BASE_URL}/api`, // adjust if deployed
+        url: `${BASE_URL}/api`, // adjust if deployed
       },
     ],
   },

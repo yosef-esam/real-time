@@ -1,8 +1,6 @@
 const token = localStorage.getItem("token");
-  const BASE_URL =
-    window.location.hostname === "localhost"
-      ? "http://localhost:5000"
-      : "https://real-time-seven.vercel.app/";
+ const BASE_URL =
+  "http://localhost:5000" ?? "https://real-time-seven.vercel.app/";
 
 export const socket = io(`${BASE_URL}`, {
   auth: { token },
