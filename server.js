@@ -11,7 +11,8 @@ const errorHandler = require("./middlewares/errorHandler");
 const AppError = require("./utils/AppError");
 const usersRoute = require("./routes/usersRoutes");
 const authRouters = require("./routes/authRouters");
-
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("./config/swagger");
 const app = express();
 
 const server = http.createServer(app);
@@ -48,6 +49,7 @@ app.get("/privateChat/:id", (req, res) => {
 
 app.use("/api/user", usersRoute);
 app.use("/api/auth", authRouters);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Cannot find ${req.originalUrl} on this server ⚠️`, 404));
@@ -55,8 +57,8 @@ app.all("*", (req, res, next) => {
 
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 3000;
-//edit this again 
+const PORT = process.env.PORT || 5000;
+//edit this again
 
 server.listen(PORT, () => {
   console.log(`server run in port http://localhost:${PORT} 🚀 `);
