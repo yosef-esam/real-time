@@ -1,5 +1,5 @@
 const token = localStorage.getItem("token");
-export const socket = io("http://localhost:3000", {
+export const socket = io(`${process.env.PORT??`http://localhost:5000`}`, {
   auth: { token },
 });
 const pathSegments = window.location.pathname.split("/");
