@@ -1,5 +1,10 @@
 const token = localStorage.getItem("token");
-export const socket = io(`${process.env.PORT??`http://localhost:5000`}`, {
+  const BASE_URL =
+    window.location.hostname === "localhost"
+      ? "http://localhost:5000"
+      : "https://real-time-seven.vercel.app/";
+
+export const socket = io(`${BASE_URL}`, {
   auth: { token },
 });
 const pathSegments = window.location.pathname.split("/");

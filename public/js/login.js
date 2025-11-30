@@ -2,8 +2,11 @@ function login(event) {
   event.preventDefault();
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
-
-  fetch(`${process.env.PORT??`http://localhost:5000`}/api/auth/login`, {
+  const BASE_URL =
+    window.location.hostname === "localhost"
+      ? "http://localhost:5000"
+      : "https://real-time-seven.vercel.app/";
+  fetch(`${BASE_URL}/api/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
